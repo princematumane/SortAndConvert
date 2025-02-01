@@ -12,7 +12,7 @@ const SortedOutput = ({ numbers, isLoading }) => {
     );
   }
 
-  if (!numbers || numbers.length === 0) {
+  if ((!numbers || numbers.length === 0) && !isLoading) {
     return <div className="text-gray-500">No numbers to display.</div>;
   }
 
