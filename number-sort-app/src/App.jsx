@@ -27,8 +27,11 @@ const App = () => {
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <h1 className="text-2xl font-bold mb-4 text-center">Number Sorter</h1>
         <NumberInput onSubmit={handleSubmit} onError={handleError} />
-        {error && <div className="text-red-500 mt-2">{error}</div>}
-        <SortedOutput numbers={sortedNumbers} isLoading={isLoading} />
+        <SortedOutput
+          numbers={sortedNumbers}
+          isLoading={isLoading}
+          error={error}
+        />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 
-const SortedOutput = ({ numbers, isLoading }) => {
+const SortedOutput = ({ numbers, isLoading, error }) => {
   if (isLoading) {
     return (
       <div
@@ -12,7 +12,18 @@ const SortedOutput = ({ numbers, isLoading }) => {
     );
   }
 
-  if ((!numbers || numbers.length === 0) && !isLoading) {
+  if (error && (!numbers || numbers.length === 0) && !isLoading) {
+    return (
+      <div
+        className="mt-4 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded-lg shadow-md animate-fade-in"
+        data-testid="error-message"
+      >
+        <p className="font-medium">{error}</p>
+      </div>
+    );
+  }
+
+  if (!error && (!numbers || numbers.length === 0) && !isLoading) {
     return (
       <div className="mt-6">
         <div className="p-4 bg-green-50 border border-gray-200 rounded-lg shadow-sm">

@@ -11,7 +11,13 @@ const NumberInput = ({ onSubmit, onError }) => {
   };
 
   const handleSubmit = () => {
-    const trimmedInput = inputValue.trim();
+    const trimmedInput = inputValue.replace(/\s+/g, "").trim();
+
+    if (trimmedInput == "") {
+      return;
+    }
+    console.log(trimmedInput);
+
     if (!/^[\d,]+$/.test(trimmedInput)) {
       onError("Input should only contain numbers and commas.");
       setIsValid(false);
@@ -19,6 +25,7 @@ const NumberInput = ({ onSubmit, onError }) => {
     }
 
     const numbers = trimmedInput.split(",").map((num) => Number(num.trim()));
+
     onSubmit(numbers);
     setIsValid(true);
   };
