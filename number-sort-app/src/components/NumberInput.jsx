@@ -7,7 +7,7 @@ const NumberInput = ({ onSubmit, onError }) => {
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
-    setIsValid(/^[\d,]*$/.test(value)); // Real-time validation
+    setIsValid(/^[\d,]*$/.test(value));
   };
 
   const handleSubmit = () => {

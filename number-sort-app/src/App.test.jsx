@@ -42,11 +42,9 @@ describe("Number Sorter App", () => {
     const sortButton = screen.getByTestId("sort-button");
     const clearButton = screen.getByTestId("clear-button");
 
-    // Enter invalid input and trigger error
     fireEvent.change(input, { target: { value: "1,2,3,A,4,5,6" } });
     fireEvent.click(sortButton);
 
-    // Clear input and error
     fireEvent.click(clearButton);
 
     expect(input).toHaveValue("");
