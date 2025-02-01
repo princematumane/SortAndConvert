@@ -65,6 +65,18 @@ describe("Number Sorter App", () => {
     expect(loadingText).toBeInTheDocument();
   });
 
+  test("displays 'No numbers to display' when there are no numbers and not loading", () => {
+    render(<App />);
+    const input = screen.getByTestId("number-input");
+    const button = screen.getByTestId("sort-button");
+
+    fireEvent.change(input, { target: { value: "" } });
+    fireEvent.click(button);
+
+    const noNumbersMessage = screen.getByTestId("no-numbers-message");
+    expect(noNumbersMessage).toHaveTextContent("No numbers to display.");
+  });
+
   test("handles empty input gracefully", async () => {
     render(<App />);
     const input = screen.getByTestId("number-input");
