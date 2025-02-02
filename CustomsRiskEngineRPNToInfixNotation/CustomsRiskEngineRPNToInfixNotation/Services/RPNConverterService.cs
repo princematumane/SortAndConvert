@@ -2,6 +2,7 @@
 using CustomsRiskEngineRPNToInfixNotation.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,27 +15,30 @@ namespace CustomsRiskEngineRPNToInfixNotation.Services
 
         public string ConvertToInfix(RPNExpression rpnExpression)
         {
-            var stack = new Stack<string>();
-            var tokens = rpnExpression.Expression.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var stack = new Stack<string>(rpnExpression.Expression.Length / 2);
+            var reader = new StringReader(rpnExpression.Expression);
+            var tokenBuilder = new StringBuilder();
+            int ch;
 
-            foreach (var token in tokens)
+            while ((ch = reader.Read()) != -1)
             {
-                if (_operators.Contains(token))
+                if (char.IsWhiteSpace((char)ch))
                 {
-                    if (stack.Count < 2)
+                    if (tokenBuilder.Length > 0)
                     {
-                        throw new InvalidOperationException("Invalid RPN expression: insufficient operands for operator.");
+                        ProcessToken(stack, tokenBuilder.ToString());
+                        tokenBuilder.Clear();
                     }
-
-                    var operand2 = stack.Pop();
-                    var operand1 = stack.Pop();
-                    var infixExpression = $"({operand1} {token} {operand2})";
-                    stack.Push(infixExpression);
                 }
                 else
                 {
-                    stack.Push(token);
+                    tokenBuilder.Append((char)ch);
                 }
+            }
+
+            if (tokenBuilder.Length > 0)
+            {
+                ProcessToken(stack, tokenBuilder.ToString());
             }
 
             if (stack.Count != 1)
@@ -43,6 +47,34 @@ namespace CustomsRiskEngineRPNToInfixNotation.Services
             }
 
             return stack.Pop();
+        }
+
+        private void ProcessToken(Stack<string> stack, string token)
+        {
+            if (_operators.Contains(token))
+            {
+                if (stack.Count < 2)
+                {
+                    throw new InvalidOperationException("Invalid RPN expression: insufficient operands for operator.");
+                }
+
+                var operand2 = stack.Pop();
+                var operand1 = stack.Pop();
+                var infixExpression = new StringBuilder()
+                    .Append('(')
+                    .Append(operand1)
+                    .Append(' ')
+                    .Append(token)
+                    .Append(' ')
+                    .Append(operand2)
+                    .Append(')')
+                    .ToString();
+                stack.Push(infixExpression);
+            }
+            else
+            {
+                stack.Push(token);
+            }
         }
     }
 }

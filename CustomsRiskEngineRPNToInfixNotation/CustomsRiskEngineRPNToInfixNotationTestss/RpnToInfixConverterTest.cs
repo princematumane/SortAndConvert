@@ -21,6 +21,9 @@ namespace CustomsRiskEngineRPNToInfixNotationTestss
         [DataRow("12 34 +", "(12 + 34)")]
         [DataRow("1 2 + 3 4 + *", "((1 + 2) * (3 + 4))")]
         [DataRow("3 4 + 5 *", "((3 + 4) * 5)")]
+        [DataRow("2 3 4 * + 5 6 * - 7 +", "(((2 + (3 * 4)) - (5 * 6)) + 7)")]
+        [DataRow("15 7 1 1 + - / 3 * 2 1 1 + + -", "(((15 / (7 - (1 + 1))) * 3) - (2 + (1 + 1)))")]
+        [DataRow("22", "22")]
         public void ConvertToInfix_ValidInput_ReturnsCorrectInfix(string rpn, string expectedInfix)
         {
             // Arrange
