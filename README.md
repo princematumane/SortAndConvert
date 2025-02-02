@@ -33,7 +33,7 @@ To get the ReactJS application up and running, follow these steps:
 
    ```bash
    git clone https://github.com/princematumane/SortAndConvert.git
-   cd SortAndConvert
+   cd SortAndConvert/number-sort-app
    ```
 
 2. Install the required dependencies:
@@ -95,7 +95,7 @@ To get the C# Command Line application up and running, follow these steps:
 
    ```bash
    git clone https://github.com/princematumane/SortAndConvert.git
-   cd SortAndConvert
+   cd SortAndConvert/CustomsRiskEngineRPNToInfixNotation
    ```
 
 2. Open the project in Visual Studio or any C# IDE.
