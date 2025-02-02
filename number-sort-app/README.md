@@ -32,8 +32,8 @@ To get the ReactJS application up and running, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/repo-name.git
-   cd repo-name
+   git clone https://github.com/princematumane/SortAndConvert.git
+   cd SortAndConvert
    ```
 
 2. Install the required dependencies:
