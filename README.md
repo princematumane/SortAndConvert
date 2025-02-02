@@ -4,11 +4,11 @@ This repository contains two separate projects:
 
 1. A ReactJS application built with Vite that takes a list of comma-separated numbers, validates the input, and displays the numbers sorted from highest to lowest. It also ensures that only numbers and commas are accepted as input.
 2. A C# Command Line application that accepts a Reverse Polish Notation (RPN) string and converts it into Infix Notation using a version of the Shunting Yard Algorithm.
-   (1) Take a stack
-   (2) When we see a number, we push it to stack
-   (3) When we see a operator, we pop two numbers out of stack and calculate them with help of operator and push the result into stack again
-   (4) We do it till the end
-   (5) At last, only a number would be left in stack, that is our answer.
+   - (1) Take a stack
+   - (2) When we see a number, we push it to stack
+   - (3) When we see a operator, we pop two numbers out of stack and calculate them with help of operator and push the result into stack again
+   - (4) We do it till the end
+   - (5) At last, only a number would be left in stack, that is our answer.
 
 ## Table of Contents
 
